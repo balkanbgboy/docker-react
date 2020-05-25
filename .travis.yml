@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run -e CI=true madolka/docker-react npm run test
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-310717640608"
+  backet_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $SECRET_KEY
